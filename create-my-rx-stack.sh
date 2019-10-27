@@ -29,7 +29,7 @@ fi
 
 aws cloudformation validate-template --template-body "file://templates/infrastructure-main.yaml"
 
-aws cloudformation create-stack --stack-name ${stackName} --template-url "https://s3.amazonaws.com/${s3Bucket}/templates/infrastructure-main.yaml" --parameters file://params/infrastructure-main-params.json --disable-rollback --capabilities CAPABILITY_NAMED_IAM
+aws cloudformation deploy --stack-name ${stackName} --template-url "https://s3.amazonaws.com/${s3Bucket}/templates/infrastructure-main.yaml" --parameters file://params/infrastructure-main-params.json --disable-rollback --capabilities CAPABILITY_NAMED_IAM
 echo "Creating Stack $stackName..."
 aws cloudformation wait stack-create-complete --stack-name ${stackName}
 echo "Finished Creating Stack $stackName!"
